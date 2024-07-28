@@ -12,11 +12,11 @@ L'interès d'aquesta prova rau en avaluar models que es puguin executar localmen
 
 En aquest treball s'han avaluat els següents models:
 
-* Llama3.1-8B (fp16 i Q8_0)
-* Gemma2-9B (fp16 i Q8_0)
-* Mistral-Nemo-12B (fp16 i Q8_0)
-* Aya-8B-23 (fp16 i Q8_0)
-* Qwen-v1.5-7B (fp16 i Q8_0)
+* Llama3.1-8B (fp16 i q8_0)
+* Gemma2-9B (fp16 i q8_0)
+* Mistral-Nemo-12B (fp16 i q8_0)
+* Aya-8B-23 (fp16 i q8_0)
+* Qwen-v1.5-7B (fp16 i q8_0)
 * Mixtral-8x7B (Q4_0)
 
 **NOTA**: És important destacar que els models de [Mistral](https://www.mistral.ai) (Nemo-12B i Mixtral-8x7B) no acaben de cabre en 24GB de memòria en les versions sense quantitzar (de fet, la versió de Mixtral és Q4_0). Tot i així s'han inclòs igualment en la prova per poder veure com es comporten generant text en català tractant-se de models lliures molt populars.
@@ -160,8 +160,8 @@ S'observa que els dos millors resultats, de nou, corresponen als models **Gemma2
 
 En aquest treball s'ha realitzat una comparació entre diferents models lliures i executables localment. Són models que no necessiten massa requeriments de maquinari. S'han analitzat les seves capacitats en la generació de text en català i l'avaluació dels mateixos.
 
-Els millors resultats els han obtingut els models **Gemma2**. És interessant fer notar que els resultats els posicionen just per sobre d'un model força més *ptent*, com és **Mixtral-8x7B**, encara que la diferència sigui mínima.
+Els millors resultats els han obtingut els models **Gemma2**. És interessant fer notar que els resultats els posicionen just per sobre d'un model força més *potent*, com és **Mixtral-8x7B**, encara que la diferència sigui mínima.
 
 ## Material inclòs al repositori
 
-En el repositori s'inclou el codi python i R per poder reproduir l'execució. Donat que no hi ha llavor d'execució es fa complexe obtenir els mateixos resultats. Tot i així, s'inclou la base de dades SQLite3 amb els resultats obtinguts en l'execució i comentats prèviament.
+En el repositori s'inclou el codi **python** i **R** per poder reproduir l'execució. Donat que no hi ha llavor d'execució es fa complexe obtenir els mateixos resultats. Tot i així, s'inclou la base de dades SQLite3 amb els resultats obtinguts en l'execució i comentats prèviament.
