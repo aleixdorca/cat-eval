@@ -17,9 +17,9 @@ En aquest treball s'han avaluat els següents models:
 * Mistral-Nemo-12B (fp16 i q8_0)
 * Aya-8B-23 (fp16 i q8_0)
 * Qwen-v1.5-7B (fp16 i q8_0)
-* Mixtral-8x7B (Q4_0)
+* Mixtral-8x7B (q4_0)
 
-**NOTA**: És important destacar que els models de [Mistral](https://www.mistral.ai) (Nemo-12B i Mixtral-8x7B) no acaben de cabre en 24GB de memòria en les versions sense quantitzar (de fet, la versió de Mixtral és Q4_0). Tot i així s'han inclòs igualment en la prova per poder veure com es comporten generant text en català tractant-se de models lliures molt populars.
+**NOTA**: És important destacar que els models de [Mistral](https://www.mistral.ai) (Nemo-12B i Mixtral-8x7B) no acaben de cabre en 24GB de memòria en les versions sense quantitzar (de fet, la versió de Mixtral és q4_0). Tot i així s'han inclòs igualment en la prova per poder veure com es comporten generant text en català tractant-se de models lliures molt populars.
 
 **NOTA 2**: També és important destacar que es coneix de l'existència dels models lliures del **Projecte Aina**, disponibles a [HuggingFace](https://huggingface.co/projecte-aina) i de la feina per [@xaviviro](https://huggingface.co/xaviviro) per crear un model *GGUF* *instruct* en català. No obstant això, aquests no han estat inclosos en aquesta prova donat que la instal·lació en **ollama** no és immediata. En un futur aquests també es podrien tenir en compte.
 
