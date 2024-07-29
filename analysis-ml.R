@@ -100,7 +100,7 @@ model_grade_ranking_ca %>%
   arrange(desc(ca)) %>% 
   ungroup() %>% 
   mutate('#' = row_number() ) %>% 
-  select('#', model, ca, ca_sd, en, en_sd, es, es_sd) %>% 
+  select('#', model, ca, ca_sd, en, en_sd, es, es_sd) %>%
   kable(round(2), format = "pipe")
 
 full_content <- content_ca %>% 
@@ -114,6 +114,22 @@ full_content %>%
   select(-.y., -n1, -n2, -p) %>% 
   rename(signif = p.adj.signif) %>% 
   kable(format = "pipe")
+
+full_content %>% 
+  ggplot(aes(x = language, y = final_grade)) +
+  geom_boxplot(aes(fill = language), alpha = 0.6) +
+  geom_jitter(alpha = 0.2, width = 0.2) +
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  facet_wrap(~model)
+
+full_content %>% 
+  ggplot(aes(x = language, y = answer_length)) +
+  geom_boxplot(aes(fill = language), alpha = 0.6) +
+  geom_jitter(alpha = 0.2, width = 0.2) +
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  facet_wrap(~model)
 
 content_ca %>% 
   group_by(model) %>% 
