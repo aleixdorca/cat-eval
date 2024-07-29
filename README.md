@@ -23,6 +23,8 @@ En aquest treball s'han avaluat els següents models:
 
 **NOTA 2**: També és important destacar que es coneix de l'existència dels models lliures del **Projecte Aina**, disponibles a [HuggingFace](https://huggingface.co/projecte-aina) i de la feina per [@xaviviro](https://huggingface.co/xaviviro) per crear un model *GGUF* *instruct* en català. No obstant això, aquests no han estat inclosos en aquesta prova donat que la instal·lació en **ollama** no és immediata. En un futur aquests també es podrien tenir en compte.
 
+## Metodologia
+
 Per obtenir els diferents models a ollama s'ha executat la comanda:
 
 ```
@@ -30,8 +32,6 @@ $ ollama pull <model>
 ```
 
 Tots els models es poden obtenir lliurement de la pàgina d'ollama a la secció de **Models**.
-
-## Metodologia
 
 Per avaluar els models s'han executat les següents tasques de manera automatitzada mitjançant l'*script* python (**cat-eval.py**) proporcionat:
 
@@ -89,12 +89,14 @@ Els texts generats s'han avaluat a partir de la següent rúbrica, amb temperatu
 
 Tot el contingut generat i les avaluacions s'han desat en una base de dades SQLite3. A continuació s'ha fet un anàlisi descriptiu bàsic.
 
+Addicionalment, s'ha traduït el procés al castella i a l'anglès per veure si hi havia diferències significatives entre els tres idiomes. En els dos idiomes addicionals s'ha repetit exactament el mateix procés.
+
 ## Resultats
 
 Els resultats obtinguts són els següents:
 
-* S'han generat **605** texts diferents (11 models, 11 temàtiques i 5 repeticions).
-* S'han generat **6650** avaluacions. Cadascun dels 11 models ha avaluat els 605 texts generats (11 * 605). Es podria avaluar si és vàlid que un model avaluï els seus propis texts, però no sembla haver-hi *favoritisme* en aquest sentit.
+* S'han generat **605** texts diferents (11 models, 11 temàtiques i 5 repeticions) per cada idioma.
+* S'han generat **6650** avaluacions. Cadascun dels 11 models ha avaluat els 605 texts generats (11 * 605) per cada idioma. Es podria avaluar si és vàlid que un model avaluï els seus propis texts, però no sembla haver-hi *favoritisme* en aquest sentit.
 
 #### Qualitat del model
 
@@ -114,13 +116,15 @@ El ranking dels models *auto*-avaluats ha estat el següent:
 | 10|aya:8b-23-fp16                      | 7.57|  0.63| 8.62|  0.39| 8.41|  0.35|
 | 11|aya:8b-23-q8_0                      | 7.55|  0.69| 8.55|  0.40| 8.41|  0.36|
 
-Els dos millors models han estat **gemma2:9b-instruct-fp16** i **gemma2:9b-instruct-q8_0**, amb una nota mitjana de **8.46** i **8.43** respectivament, seguits de **mixtral:8x7b**. Els resultats dels dos models **Gemma2** són molt similars, amb una diferència de menys d'un punt en la nota mitjana i una desviació típica similar. Això, tractant-se del *mateix* model, és d'esperar. En altres models, com per exemple **Qwen**, *fp16* no ha estat sempre millor que *q8_0*.
+Els dos millors models en català han estat **gemma2:9b-instruct-fp16** i **gemma2:9b-instruct-q8_0**, amb una nota mitjana de **8.46** i **8.43** respectivament, seguits de **mixtral:8x7b**. Els resultats dels dos models **Gemma2** són molt similars, amb una diferència de menys d'un punt en la nota mitjana i una desviació típica similar. Això, tractant-se del *mateix* model, és d'esperar. En altres models, com per exemple **Qwen**, *fp16* no ha estat sempre millor que *q8_0*.
 
 La diferència entre els dos models és que **gemma2:9b-instruct-q8_0** té una mida força més petita, cap molt millor en VRAM i presenta una velocitat de generació superior, mentre que **gemma2:9b-instruct-fp16** té una mida de model força més gran i, teòricament, hauria de mostrar una millor qualitat general. Els dos models són bons i haurien de poder ser utilitzats per a la generació de text en català. Per comoditat es recomanaria escollir **gemma2:9b-instruct-q8_0**, ja que el model és més ràpid i eficient pel que fa als recursos.
 
 És interessant comentar que cada model avalua els texts generats de manera força diferent tot i aplicar la mateixa rúbrica. Per exemple, el model **Mixtral-8x7B** (i Mistral, en general) acostuma a valorar els textos generats amb una nota més alta que els altres models, mentre que els models **Gemma2**, per exemple, acostumen a valorar els texts generats amb una nota força més baixa de mitjana.
 
-Com a referència es mostra a continuació les notes mitjanes d'avaluació de cada model.
+En la taula també s'inclouen els resultats de les variants en anglès i castellà. Com era d'esperar tots els models mostren millors resultats en castellà i en anglès. El millor model en anglès es **Mistral-8x7B**, mentre que el millor model en castellà és **gemma2:9b-instruct-q8_0**. En tots els caos, però, **Gemma2** són els *millors* models aplicables en les condicions d'execució local amb una RTX 4090 amb 24 GB de VRAM.
+
+Com a referència es mostra a continuació les notes mitjanes d'avaluació de cada model en català.
 
 \# | avaluador | nota mitjana | sd
 -|-|-:|-:
@@ -138,7 +142,7 @@ Com a referència es mostra a continuació les notes mitjanes d'avaluació de ca
 
 #### Mida de les respostes
 
-En quant a la mida mitjana dels texts generats (en paraules), la classificació és la següent:
+En quant a la mida mitjana dels texts generats (en paraules en català), la classificació és la següent:
 
 \# | model | mida mitjana | sd
 -|-|-:|-:

@@ -30,7 +30,7 @@ grades_es <- dbFetch(rs2)
 content_ca <- content_ca %>% 
   rowwise() %>% 
   mutate(model = ifelse(model == "aya:8b-23-f16", "aya:8b-23-fp16", model),
-         model = ifelse(model == "mixtral:8x7b ", "mixtral:8x7b-q4_0", model),
+         model = ifelse(model == "mixtral:8x7b", "mixtral:8x7b-q4_0", model),
          answer_length = length(unlist(strsplit(answer, "\\s+"))),
          quant = stri_extract_last_regex(model, '.[0-9\\_]+'),
          quant = ifelse(quant == "x7", "q4_0", quant),
@@ -39,7 +39,7 @@ content_ca <- content_ca %>%
 content_en <- content_en %>% 
   rowwise() %>% 
   mutate(model = ifelse(model == "aya:8b-23-f16", "aya:8b-23-fp16", model),
-         model = ifelse(model == "mixtral:8x7b ", "mixtral:8x7b-q4_0", model),
+         model = ifelse(model == "mixtral:8x7b", "mixtral:8x7b-q4_0", model),
          answer_length = length(unlist(strsplit(answer, "\\s+"))),
          quant = stri_extract_last_regex(model, '.[0-9\\_]+'),
          quant = ifelse(quant == "x7", "q4_0", quant),
@@ -48,7 +48,7 @@ content_en <- content_en %>%
 content_es <- content_es %>% 
   rowwise() %>% 
   mutate(model = ifelse(model == "aya:8b-23-f16", "aya:8b-23-fp16", model),
-         model = ifelse(model == "mixtral:8x7b ", "mixtral:8x7b-q4_0", model),
+         model = ifelse(model == "mixtral:8x7b", "mixtral:8x7b-q4_0", model),
          answer_length = length(unlist(strsplit(answer, "\\s+"))),
          quant = stri_extract_last_regex(model, '.[0-9\\_]+'),
          quant = ifelse(quant == "x7", "q4_0", quant),
@@ -81,8 +81,10 @@ model_grade_ranking_es <- content_es %>%
 model_grade_ranking_ca %>% 
   inner_join(model_grade_ranking_en, by = c("model")) %>% 
   inner_join(model_grade_ranking_es, by = c("model")) %>% 
-  select(model, ca, ca_sd, en, en_sd, es, es_sd) %>% 
   arrange(desc(ca)) %>% 
+  ungroup() %>% 
+  mutate('#' = row_number() ) %>% 
+  select('#', model, ca, ca_sd, en, en_sd, es, es_sd) %>% 
   kable(round(2), format = "pipe")
 
 content_ca %>% 
