@@ -58,6 +58,18 @@ content_es <- content_es %>%
          quant = ifelse(quant == "p16", "fp16", quant),
          language = "es")
 
+summary(aov(final_grade ~model, data = content_ca))
+tukey_hsd(content_ca %>% mutate(model = str_replace_all(model, "-", "_")), final_grade ~model) %>% 
+  print(n = 100)
+
+summary(aov(final_grade ~model, data = content_en))
+tukey_hsd(content_en %>% mutate(model = str_replace_all(model, "-", "_")), final_grade ~model) %>% 
+  print(n = 100)
+
+summary(aov(final_grade ~model, data = content_es))
+tukey_hsd(content_es %>% mutate(model = str_replace_all(model, "-", "_")), final_grade ~model) %>% 
+  print(n = 100)
+
 model_grade_ranking_ca <- content_ca %>% 
   group_by(model, quant) %>% 
   summarise(model_grade = mean(final_grade),
