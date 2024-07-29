@@ -2,6 +2,7 @@ library(tidyverse)
 library(RSQLite)
 library(stringi)
 library(kableExtra)
+library(rstatix)
 
 con_ca <- dbConnect(RSQLite::SQLite(), "cat-eval.db")
 
@@ -34,7 +35,8 @@ content_ca <- content_ca %>%
          answer_length = length(unlist(strsplit(answer, "\\s+"))),
          quant = stri_extract_last_regex(model, '.[0-9\\_]+'),
          quant = ifelse(quant == "x7", "q4_0", quant),
-         quant = ifelse(quant == "p16", "fp16", quant))
+         quant = ifelse(quant == "p16", "fp16", quant),
+         language = "ca")
 
 content_en <- content_en %>% 
   rowwise() %>% 
@@ -43,7 +45,8 @@ content_en <- content_en %>%
          answer_length = length(unlist(strsplit(answer, "\\s+"))),
          quant = stri_extract_last_regex(model, '.[0-9\\_]+'),
          quant = ifelse(quant == "x7", "q4_0", quant),
-         quant = ifelse(quant == "p16", "fp16", quant))
+         quant = ifelse(quant == "p16", "fp16", quant),
+         language = "en")
 
 content_es <- content_es %>% 
   rowwise() %>% 
@@ -52,7 +55,8 @@ content_es <- content_es %>%
          answer_length = length(unlist(strsplit(answer, "\\s+"))),
          quant = stri_extract_last_regex(model, '.[0-9\\_]+'),
          quant = ifelse(quant == "x7", "q4_0", quant),
-         quant = ifelse(quant == "p16", "fp16", quant))
+         quant = ifelse(quant == "p16", "fp16", quant),
+         language = "es")
 
 model_grade_ranking_ca <- content_ca %>% 
   group_by(model, quant) %>% 
@@ -86,6 +90,16 @@ model_grade_ranking_ca %>%
   mutate('#' = row_number() ) %>% 
   select('#', model, ca, ca_sd, en, en_sd, es, es_sd) %>% 
   kable(round(2), format = "pipe")
+
+full_content <- content_ca %>% 
+  bind_rows(content_en) %>% 
+  bind_rows(content_es)
+
+full_content %>% 
+  group_by(model) %>% 
+  t_test(final_grade ~ language) %>% 
+  arrange(model, group1, group2) %>% 
+  print(n = 100)
 
 content_ca %>% 
   group_by(model) %>% 
