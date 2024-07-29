@@ -120,11 +120,9 @@ Els dos millors models en català han estat **gemma2:9b-instruct-fp16** i **gemm
 
 La diferència entre els dos models és que **gemma2:9b-instruct-q8_0** té una mida força més petita, cap molt millor en VRAM i presenta una velocitat de generació superior, mentre que **gemma2:9b-instruct-fp16** té una mida de model força més gran i, teòricament, hauria de mostrar una millor qualitat general. Els dos models són bons i haurien de poder ser utilitzats per a la generació de text en català. Per comoditat es recomanaria escollir **gemma2:9b-instruct-q8_0**, ja que el model és més ràpid i eficient pel que fa als recursos.
 
-És interessant comentar que cada model avalua els texts generats de manera força diferent tot i aplicar la mateixa rúbrica. Per exemple, el model **Mixtral-8x7B** (i Mistral, en general) acostuma a valorar els textos generats amb una nota més alta que els altres models, mentre que els models **Gemma2**, per exemple, acostumen a valorar els texts generats amb una nota força més baixa de mitjana.
-
 En la taula també s'inclouen els resultats de les variants en anglès i castellà. Com era d'esperar tots els models mostren millors resultats en castellà i en anglès. El millor model en anglès es **Mistral-8x7B**, mentre que el millor model en castellà és **gemma2:9b-instruct-q8_0**. En tots els caos, però, **Gemma2** són els *millors* models aplicables en les condicions d'execució local amb una RTX 4090 amb 24 GB de VRAM.
 
-Com a referència es mostra a continuació les notes mitjanes d'avaluació de cada model en català.
+És interessant comentar que cada model avalua els texts generats de manera força diferent tot i aplicar la mateixa rúbrica. Per exemple, el model **Mixtral-8x7B** (i Mistral, en general) acostuma a valorar els textos generats amb una nota més alta que els altres models, mentre que els models **Gemma2**, per exemple, acostumen a valorar els texts generats amb una nota força més baixa de mitjana. Com a referència es mostra a continuació les notes mitjanes d'avaluació de cada model en català.
 
 \# | avaluador | nota mitjana | sd
 -|-|-:|-:
@@ -162,9 +160,11 @@ S'observa que els dos millors resultats, de nou, corresponen als models **Gemma2
 
 ## Conclusions
 
-En aquest treball s'ha realitzat una comparació entre diferents models lliures i executables localment. Són models que no necessiten massa requeriments de maquinari. S'han analitzat les seves capacitats en la generació de text en català i l'avaluació dels mateixos.
+En aquest treball s'ha realitzat una comparativa entre diferents models lliures i executables localment. Són models que no necessiten massa requeriments de maquinari. S'han analitzat les seves capacitats en la generació de text en català, i addicionalment en anglès i castellà, i l'avaluació dels mateixos.
 
-Els millors resultats els han obtingut els models **Gemma2**. És interessant fer notar que els resultats els posicionen just per sobre d'un model força més *potent*, com és **Mixtral-8x7B**, encara que la diferència sigui mínima.
+Els millors resultats els han obtingut els models de la família **Gemma2**. És interessant fer notar que els resultats els posicionen just per sobre d'un model força més *potent*, com és **Mixtral-8x7B**, encara que la diferència sigui mínima.
+
+S'ha observat també que les valoracions dels texts generats canvien significativament quan els textos s'han generat en castellà i anglès. Això era d'esperar ja que els models estan entrenats principalment en anglès, seguit d'altres idiomes com pot ser el castellà. En aquest sentit ha esta interessant veure la *gran* diferència entre el català i els altres idiomes en els model **Qwen** d'Alibaba Cloud i **Aya** de Cohere que es presenta com un model multi-llenguatge amb 23 llengües d'entrenament.
 
 ## Material inclòs al repositori
 
