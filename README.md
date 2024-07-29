@@ -100,19 +100,19 @@ Els resultats obtinguts són els següents:
 
 El ranking dels models *auto*-avaluats ha estat el següent:
 
-\# | model | nota mitjana | sd
--|-|-:|-:
-**1** | **gemma2:9b-instruct-fp16** | **8.46** | **0.334**
-**2** | **gemma2:9b-instruct-q8_0** | **8.43** | **0.333**
-**3** | **mixtral:8x7b** | **8.42** | **0.305**
-4 | mistral-nemo:12b-instruct-2407-fp16 | 8.29 | 0.288
-5 | mistral-nemo:12b-instruct-2407-q8_0 | 8.28 | 0.394
-6 | llama3.1:8b-instruct-q8_0 | 8.13 | 0.333
-7 | llama3.1:8b-instruct-fp16 | 8.12 | 0.336
-8 | qwen:7b-chat-v1.5-q8_0 | 7.85 | 0.400
-9 | qwen:7b-chat-v1.5-fp16 | 7.81 | 0.471
-10 | aya:8b-23-f16 | 7.57 | 0.634
-11 | aya:8b-23-q8_0 | 7.55 | 0.692
+|  #|model                               |   ca| ca_sd|   en| en_sd|   es| es_sd|
+|--:|:-----------------------------------|----:|-----:|----:|-----:|----:|-----:|
+|  **1**|**gemma2:9b-instruct-fp16**             | **8.46**|  0.33| 8.66|  0.32| 8.47|  0.34|
+|  **2**|**gemma2:9b-instruct-q8_0**             | **8.43**|  0.33| 8.70|  0.36| 8.48|  0.34|
+|  **3**|**mixtral:8x7b-q4_0**                   | **8.42**|  0.30| 8.83|  0.27| 8.40|  0.40|
+|  4|mistral-nemo:12b-instruct-2407-fp16 | 8.29|  0.29| 8.63|  0.37| 8.23|  0.38|
+|  5|mistral-nemo:12b-instruct-2407-q8_0 | 8.28|  0.39| 8.67|  0.40| 8.20|  0.40|
+|  6|llama3.1:8b-instruct-q8_0           | 8.13|  0.33| 8.56|  0.38| 8.27|  0.26|
+|  7|llama3.1:8b-instruct-fp16           | 8.12|  0.34| 8.54|  0.36| 8.29|  0.27|
+|  8|qwen:7b-chat-v1.5-q8_0              | 7.85|  0.40| 8.57|  0.35| 8.06|  0.30|
+|  9|qwen:7b-chat-v1.5-fp16              | 7.81|  0.47| 8.55|  0.35| 8.13|  0.31|
+| 10|aya:8b-23-fp16                      | 7.57|  0.63| 8.62|  0.39| 8.41|  0.35|
+| 11|aya:8b-23-q8_0                      | 7.55|  0.69| 8.55|  0.40| 8.41|  0.36|
 
 Els dos millors models han estat **gemma2:9b-instruct-fp16** i **gemma2:9b-instruct-q8_0**, amb una nota mitjana de **8.46** i **8.43** respectivament, seguits de **mixtral:8x7b**. Els resultats dels dos models **Gemma2** són molt similars, amb una diferència de menys d'un punt en la nota mitjana i una desviació típica similar. Això, tractant-se del *mateix* model, és d'esperar. En altres models, com per exemple **Qwen**, *fp16* no ha estat sempre millor que *q8_0*.
 
@@ -124,13 +124,13 @@ Com a referència es mostra a continuació les notes mitjanes d'avaluació de ca
 
 \# | avaluador | nota mitjana | sd
 -|-|-:|-:
-**1** | **mixtral:8x7b** | **9.26** | **0.907**
+**1** | **mixtral:8x7b-q4_0** | **9.26** | **0.907**
 2 | mistral-nemo:12b-instruct-2407-fp16 | 8.29 | 0.792
 3 | mistral-nemo:12b-instruct-2407-q8_0 | 8.28 | 0.790
 4 | qwen:7b-chat-v1.5-q8_0 | 8.16 | 0.449
 5 | aya:8b-23-q8_0 | 8.14 | 0.746
 6 | qwen:7b-chat-v1.5-fp16 | 8.14 | 0.419
-7 | aya:8b-23-f16 | 8.11 | 0.743
+7 | aya:8b-23-fp16 | 8.11 | 0.743
 8 | llama3.1:8b-instruct-q8_0 | 7.95 | 0.720
 9 | llama3.1:8b-instruct-fp16 | 7.92 | 0.699
 **10** | **gemma2:9b-instruct-q8_0** | **7.33** | **0.985**
@@ -144,8 +144,8 @@ En quant a la mida mitjana dels texts generats (en paraules), la classificació 
 -|-|-:|-:
 1 | mistral-nemo:12b-instruct-2407-fp16 | 277. | 59.2
 2 | mistral-nemo:12b-instruct-2407-q8_0 | 266. | 50.9
-3 | mixtral:8x7b | 256. | 31.0
-4 | aya:8b-23-f16 | 195. | 47.4
+3 | mixtral:8x7b-q4_0 | 256. | 31.0
+4 | aya:8b-23-fp16 | 195. | 47.4
 5 | aya:8b-23-q8_0 | 186. | 46.1
 6 | llama3.1:8b-instruct-fp16 | 172. | 47.4
 7 | llama3.1:8b-instruct-q8_0 | 170. | 38.6
