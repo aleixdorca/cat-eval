@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 ollama_host = os.getenv("LLM_BASE_URL")
-db_name = os.getenv("DB_NAME")
+db_name = os.getenv("DB_NAME_EN")
 
 # IMPORTANT: Creació de la base de dades i les taules de dades
 # > sqlite3 en-eval.db
