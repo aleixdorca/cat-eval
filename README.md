@@ -172,7 +172,7 @@ En el repositori s'inclou el codi **python** i **R** per poder reproduir l'execu
 
 ## Apèndix
 
-A continuació es mostra la taula comparativa dels tests de significació de cada model aparellat per llengua sobre les avaluacions mitjanes.
+A continuació es mostra la taula comparativa dels tests de significació (Student t-test) de cada model aparellat per llengua sobre les avaluacions mitjanes.
 
 |model                               |group1 |group2 |   statistic|        df|    p.adj|signif |
 |:-----------------------------------|:------|:------|-----------:|---------:|--------:|:------|
