@@ -99,7 +99,9 @@ full_content %>%
   group_by(model) %>% 
   t_test(final_grade ~ language) %>% 
   arrange(model, group1, group2) %>% 
-  print(n = 100)
+  select(-.y., -n1, -n2, -p) %>% 
+  rename(signif = p.adj.signif) %>% 
+  kable(format = "pipe")
 
 content_ca %>% 
   group_by(model) %>% 
