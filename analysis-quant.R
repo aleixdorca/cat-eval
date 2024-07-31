@@ -16,7 +16,7 @@ content_ca <- content_ca %>%
   rowwise() %>% 
   mutate(answer_length = length(unlist(strsplit(answer, "\\s+"))))
 
-summary(aov(final_grade ~model, data = content_ca))
+summary(aov(final_grade ~ model, data = content_ca))
 tukey_hsd(content_ca %>% mutate(model = str_replace_all(model, "-", "_")), final_grade ~model) %>% 
   print(n = 100)
 
@@ -61,10 +61,18 @@ content_ca %>%
   theme(legend.position = "none") +
   facet_wrap(~model)
 
+content_ca %>% 
+  ggplot(aes(final_grade, model)) + 
+  geom_boxplot(aes(fill = model), alpha = 0.3) +
+  geom_jitter(alpha = 0.2, height = 0.2) +
+  scale_x_continuous(limits = c(7, 10), breaks = seq(0, 10, 1)) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
 grades_ca %>% 
   ggplot(aes(grade, evaluator)) + 
-  geom_boxplot(aes(fill = evaluator)) + 
-  geom_jitter(alpha = 0.1, height = 0.2) +
+  geom_boxplot(aes(fill = evaluator), alpha = 0.2) + 
+  geom_jitter(alpha = 0.2, height = 0.2) +
   scale_x_continuous(limits = c(0, 11), breaks = seq(0, 10, 1)) +
   theme_minimal() +
   theme(legend.position = "none")

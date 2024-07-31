@@ -16,7 +16,8 @@ db_name = os.getenv("DB_NAME_QUANT")
 # > CREATE TABLE content (id INTEGER PRIMARY KEY, model TEXT(1024) NOT NULL, question TEXT(1024) NOT NULL, answer TEXT(4096) NOT NULL, final_grade INTEGER DEFAULT '-1');
 # > CREATE TABLE grades (id INTEGER PRIMARY KEY, evaluator TEXT(1024) NOT NULL, content_id INTEGER NOT NULL, grade INTEGER DEFAULT '-1');
 
-models = ['gemma2:9b-instruct-fp16', 'gemma2:9b-instruct-q8_0', 'gemma2:9b-instruct-q6_K', 'gemma2:9b-instruct-q5_K_M', 'gemma2:9b-instruct-q5_K_S', 'gemma2:9b-instruct-q5_1', 'gemma2:9b-instruct-q5_0', 'gemma2:9b-instruct-q4_K_M', 'gemma2:9b-instruct-q4_K_S', 'gemma2:9b-instruct-q4_1', 'gemma2:9b-instruct-q4_0', 'gemma2:9b-instruct-q3_K_L', 'gemma2:9b-instruct-q3_K_M', 'gemma2:9b-instruct-q3_K_S', 'gemma2:9b-instruct-q2_K']
+models = ['gemma2:27b', 'gemma2:9b-instruct-fp16', 'gemma2:9b-instruct-q8_0', 'gemma2:9b-instruct-q6_K', 'gemma2:9b-instruct-q5_K_M', 'gemma2:9b-instruct-q5_K_S', 'gemma2:9b-instruct-q5_1', 'gemma2:9b-instruct-q5_0', 'gemma2:9b-instruct-q4_K_M', 'gemma2:9b-instruct-q4_K_S', 'gemma2:9b-instruct-q4_1', 'gemma2:9b-instruct-q4_0', 'gemma2:9b-instruct-q3_K_L', 'gemma2:9b-instruct-q3_K_M', 'gemma2:9b-instruct-q3_K_S', 'gemma2:9b-instruct-q2_K']
+
 evaluators = ['mistral-nemo:12b-instruct-2407-fp16', 'llama3.1:8b-instruct-fp16', 'llama3.1:8b-instruct-q8_0', 'qwen:7b-chat-v1.5-fp16', 'qwen:7b-chat-v1.5-q8_0', 'gemma2:9b-instruct-fp16', 'gemma2:9b-instruct-q8_0', 'mistral-nemo:12b-instruct-2407-q8_0',  'aya:8b-23-f16', 'aya:8b-23-q8_0', 'mixtral:8x7b']
 
 def extract_json(content):
@@ -177,6 +178,6 @@ if __name__ == '__main__':
 
     # Call the function with arguments
     # main(Generar contingut, nombre de repeticions, avaluar el contingut)
-    main(False, 5, True)
+    main(True, 5, True)
     
     print("L'execució ha finalitzat correctament.")
