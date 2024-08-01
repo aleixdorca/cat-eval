@@ -4,7 +4,7 @@ library(stringi)
 library(kableExtra)
 library(rstatix)
 
-con_quant <- dbConnect(RSQLite::SQLite(), "quant-eval.db")
+con_quant <- dbConnect(RSQLite::SQLite(), "../dbs/quant-eval.db")
 
 rs1 <- dbSendQuery(con_quant, "SELECT * FROM content")
 content_ca <- dbFetch(rs1)

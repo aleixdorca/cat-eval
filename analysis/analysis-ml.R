@@ -4,7 +4,7 @@ library(stringi)
 library(kableExtra)
 library(rstatix)
 
-con_ca <- dbConnect(RSQLite::SQLite(), "cat-eval.db")
+con_ca <- dbConnect(RSQLite::SQLite(), "../dbs/cat-eval.db")
 
 rs1 <- dbSendQuery(con_ca, "SELECT * FROM content")
 content_ca <- dbFetch(rs1)
@@ -12,7 +12,7 @@ content_ca <- dbFetch(rs1)
 rs2 <- dbSendQuery(con_ca, "SELECT * FROM grades")
 grades_ca <- dbFetch(rs2)
 
-con_en <- dbConnect(RSQLite::SQLite(), "en-eval.db")
+con_en <- dbConnect(RSQLite::SQLite(), "../dbs/en-eval.db")
 
 rs1 <- dbSendQuery(con_en, "SELECT * FROM content")
 content_en <- dbFetch(rs1)
@@ -20,7 +20,7 @@ content_en <- dbFetch(rs1)
 rs2 <- dbSendQuery(con_en, "SELECT * FROM grades")
 grades_en <- dbFetch(rs2)
 
-con_es <- dbConnect(RSQLite::SQLite(), "es-eval.db")
+con_es <- dbConnect(RSQLite::SQLite(), "../dbs/es-eval.db")
 
 rs1 <- dbSendQuery(con_es, "SELECT * FROM content")
 content_es <- dbFetch(rs1)

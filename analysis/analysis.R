@@ -1,7 +1,7 @@
 library(tidyverse)
 library(RSQLite)
 
-con <- dbConnect(RSQLite::SQLite(), "cat-eval.db")
+con <- dbConnect(RSQLite::SQLite(), "../dbs/cat-eval.db")
 
 rs1 <- dbSendQuery(con, "SELECT * FROM content")
 content <- dbFetch(rs1)
