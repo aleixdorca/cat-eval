@@ -4,3 +4,4 @@
 .Rproj.user
 .env
 cat-eval.Rproj
+.DS_Store
