@@ -120,6 +120,8 @@ El ranking dels models *auto*-avaluats ha estat el següent:
 
 S'observa que els dos millors models en català han estat **gemma2:9b-instruct-fp16** i **gemma2:9b-instruct-q8_0**, amb una nota mitjana de **8.46** i **8.43** respectivament, seguits de **mixtral:8x7b**.
 
+![Mean Grades per Model and Language](analysis/grades.png)
+
 Els resultats dels dos models de la família **Gemma2** són molt similars, amb una diferència de menys d'un punt en la nota mitjana i una desviació típica similar. Això, tractant-se del *mateix* model, era d'esperar. En altres models, com per exemple **Qwen**, *fp16* no ha estat sempre millor que *q8_0*, però, de nou, les diferències són mínimes entre models de la mateixa família.
 
 La diferència entre variants de quantització és que **gemma2:9b-instruct-q8_0** té una mida força més petita, cap millor en VRAM i presenta una velocitat de generació superior, mentre que **gemma2:9b-instruct-fp16** té una mida de model força més gran i, *teòricament*, hauria de mostrar una millor qualitat general, cosa que no s'aprecia especialment.
@@ -143,6 +145,8 @@ En la taula també s'inclouen els resultats de les variants en anglès i castell
 9 | llama3.1:8b-instruct-fp16 | 7.92 | 0.699
 **10** | **gemma2:9b-instruct-q8_0** | **7.33** | **0.985**
 **11** | **gemma2:9b-instruct-fp16** | **7.32** | **0.990**
+
+![Mean grade per evaluator](analysis/evaluator.png)
 
 #### Mida de les respostes
 

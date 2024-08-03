@@ -3,6 +3,7 @@ library(RSQLite)
 library(stringi)
 library(kableExtra)
 library(rstatix)
+library(ggsci)
 
 con_ca <- dbConnect(RSQLite::SQLite(), "../dbs/cat-eval.db")
 
@@ -105,7 +106,8 @@ model_grade_ranking_ca %>%
 
 full_content <- content_ca %>% 
   bind_rows(content_en) %>% 
-  bind_rows(content_es)
+  bind_rows(content_es) %>% 
+  ungroup()
 
 full_content %>% 
   group_by(model) %>% 
@@ -114,6 +116,23 @@ full_content %>%
   select(-.y., -n1, -n2, -p) %>% 
   rename(signif = p.adj.signif) %>% 
   kable(format = "pipe")
+
+full_content %>% 
+  summarise(mean_grade = mean(final_grade),
+            ymax = mean_grade + sd(final_grade),
+            ymin = mean_grade - sd(final_grade),
+            .by = c(model, language)) %>%
+  mutate(model = fct_infreq(model, ifelse(language == "ca", mean_grade, 0))) %>% 
+  ggplot(aes(x = model, model, y = mean_grade, color = language, group = language)) +
+  geom_point(position = position_dodge(width=0.9), size = 2) +
+  geom_line(position = position_dodge(width=0.9), size = 1, alpha = 0.4) +
+  geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.5, alpha = 0.4, position = position_dodge(width=0.9), size = 1) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 335, vjust = 0, hjust = 0)) + 
+  labs(title = "Mean Grade per Model and Language", 
+       subtitle = "Sorted by descending Catalan mean grade",
+       x = "", y = "Mean Grade", color = "Language") + 
+  scale_color_startrek()
 
 full_content %>% 
   ggplot(aes(x = language, y = final_grade)) +
@@ -167,3 +186,23 @@ grades_ca %>%
   scale_x_continuous(limits = c(0, 11), breaks = seq(0, 10, 1)) +
   theme_minimal() +
   theme(legend.position = "none")
+
+content_ca %>% 
+  inner_join(grades_ca, by = c("id" = "content_id")) %>% 
+  ungroup() %>% 
+  select(model, evaluator, grade) %>% 
+  summarise(grade = mean(grade),
+            .by = c(model, evaluator)) %>% 
+  ggplot(aes(model, fct_rev(evaluator))) + 
+  geom_tile(aes(fill = grade)) +
+  geom_text(aes(label = round(grade, 2)), size = 3, color = "white") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) + 
+  labs(title = "Evaluator Mean Grade (Catalan)", 
+       x = "Generator", y = "Evaluator", fill = "Grade") + 
+  scale_fill_gradientn(colours = c("#5C88DAFF", "white"),
+                       values = c(1, 0.6, 0),
+                       limits = c(0, 10)) + 
+  theme(legend.position = "none")
+
+                       
