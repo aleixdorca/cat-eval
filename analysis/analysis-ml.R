@@ -125,9 +125,9 @@ full_content %>%
             .by = c(model, language)) %>% 
   mutate(model = fct_infreq(model, ifelse(language == "ca", mean_grade, 0))) %>% 
   ggplot(aes(x = model, model, y = mean_grade, color = language, group = language)) +
-  geom_point(position = position_dodge(width=0.9), size = 2) +
-  geom_line(position = position_dodge(width=0.9), linewidth = 1, alpha = 0.4) +
-  geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.5, alpha = 0.4, position = position_dodge(width=0.9), size = 1) +
+  geom_point(position = position_dodge(width=0.3), size = 2) +
+  geom_line(position = position_dodge(width=0.3), linewidth = 1, alpha = 0.4) +
+  geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.5, alpha = 0.4, position = position_dodge(width=0.3), size = 1) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 335, vjust = 0, hjust = 0)) + 
   labs(title = "Mean grade per model and language", 
