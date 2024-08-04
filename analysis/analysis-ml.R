@@ -127,7 +127,7 @@ full_content %>%
   ggplot(aes(x = model, model, y = mean_grade, color = language, group = language)) +
   geom_point(position = position_dodge(width=0.3), size = 2) +
   geom_line(position = position_dodge(width=0.3), linewidth = 1, alpha = 0.4) +
-  geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.5, alpha = 0.4, position = position_dodge(width=0.3), size = 1) +
+  geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.5, alpha = 0.4, position = position_dodge(width=0.3), linewidth = 1) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 335, vjust = 0, hjust = 0)) + 
   labs(title = "Mean grade per model and language", 
@@ -196,13 +196,13 @@ content_ca %>%
             .by = c(model, evaluator)) %>% 
   ggplot(aes(model, fct_rev(evaluator))) + 
   geom_tile(aes(fill = grade)) +
-  geom_text(aes(label = round(grade, 2)), size = 3, color = "white") +
+  geom_text(aes(label = round(grade, 2)), size = 3, color = "black") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) + 
   labs(title = "Evaluator mean grade (Catalan)", 
        x = "Content generator", y = "Content evaluator", fill = "Grade") + 
-  scale_fill_gradientn(colours = c("#5C88DAFF", "white"),
-                       values = c(1, 0.6, 0),
+  scale_fill_gradientn(colours = c("#5C88DAFF", "white", "#CC0C00FF"),
+                       values = c(1, 0.75, 0),
                        limits = c(0, 10)) + 
   theme(legend.position = "none")
 
