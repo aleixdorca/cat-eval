@@ -146,7 +146,7 @@ En la taula també s'inclouen els resultats de les variants en anglès i castell
 **10** | **gemma2:9b-instruct-q8_0** | **7.33** | **0.985**
 **11** | **gemma2:9b-instruct-fp16** | **7.32** | **0.990**
 
-![Mean grade per evaluator](analysis/evaluator.png)
+![Mean grade per evaluator](analysis/evaluator.svg)
 
 #### Mida de les respostes
 
