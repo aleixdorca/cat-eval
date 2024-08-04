@@ -119,18 +119,19 @@ full_content %>%
 
 full_content %>% 
   summarise(mean_grade = mean(final_grade),
-            ymax = mean_grade + sd(final_grade),
-            ymin = mean_grade - sd(final_grade),
-            .by = c(model, language)) %>%
+            ci = qt(0.975, df = n() - 1) * sd(final_grade) / sqrt(n()),
+            ymin = mean_grade - ci,
+            ymax = mean_grade + ci,
+            .by = c(model, language)) %>% 
   mutate(model = fct_infreq(model, ifelse(language == "ca", mean_grade, 0))) %>% 
   ggplot(aes(x = model, model, y = mean_grade, color = language, group = language)) +
   geom_point(position = position_dodge(width=0.9), size = 2) +
-  geom_line(position = position_dodge(width=0.9), size = 1, alpha = 0.4) +
+  geom_line(position = position_dodge(width=0.9), linewidth = 1, alpha = 0.4) +
   geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.5, alpha = 0.4, position = position_dodge(width=0.9), size = 1) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 335, vjust = 0, hjust = 0)) + 
-  labs(title = "Mean Grade per Model and Language", 
-       subtitle = "Sorted by descending Catalan mean grade",
+  labs(title = "Mean grade per model and language", 
+       subtitle = "Sorted by descending Catalan mean grade (95% CI)",
        x = "", y = "Mean Grade", color = "Language") + 
   scale_color_startrek()
 
@@ -198,8 +199,8 @@ content_ca %>%
   geom_text(aes(label = round(grade, 2)), size = 3, color = "white") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) + 
-  labs(title = "Evaluator Mean Grade (Catalan)", 
-       x = "Generator", y = "Evaluator", fill = "Grade") + 
+  labs(title = "Evaluator mean grade (Catalan)", 
+       x = "Content generator", y = "Content evaluator", fill = "Grade") + 
   scale_fill_gradientn(colours = c("#5C88DAFF", "white"),
                        values = c(1, 0.6, 0),
                        limits = c(0, 10)) + 
